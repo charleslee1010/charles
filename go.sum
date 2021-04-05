@@ -1,2 +1,4 @@
 github.com/charleslee1010/tools v0.0.0-20210405063008-df8ebe5eaaba h1:nGb9oJ5RyBeImBbO/PnOxI/ZnhOdkCFBdLx2l3ezKak=
 github.com/charleslee1010/tools v0.0.0-20210405063008-df8ebe5eaaba/go.mod h1:yIpAXy4hiLhoK2EYKuaafai6iFQ+GXrGiph1csi/1hc=
+github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
+github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
