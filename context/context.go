@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/charleslee1010/charles/mylog"
-	uuid "github.com/satori/go.uuid"
+	//	 "github.com/satori/go.uuid"
 )
 
 type Context struct {
@@ -22,20 +22,31 @@ type Context struct {
 //
 
 func NewContext(w http.ResponseWriter, r *http.Request, logger *mylog.MyLogger) *Context {
+	uuid := ""
+
+	if id, err := uuid.NewUUID(); err == nil {
+		uuid = id.String()
+	}
 
 	return &Context{
 		W:         w,
 		R:         r,
-		Sid:       uuid.Must(uuid.NewV4()).String(),
+		Sid:       uuid,
 		Logger:    logger,
 		StartTime: time.Now(),
 	}
 }
 
 func (this *Context) Init(w http.ResponseWriter, r *http.Request, logger *mylog.MyLogger) {
+	uuid := ""
+
+	if id, err := uuid.NewUUID(); err == nil {
+		uuid = id.String()
+	}
+
 	this.W = w
 	this.R = r
-	this.Sid = uuid.Must(uuid.NewV4()).String()
+	this.Sid = uuid
 	this.Logger = logger
 	this.StartTime = time.Now()
 }
