@@ -2,31 +2,33 @@ package context
 
 import (
 	"encoding/json"
-	"github.com/charles/mylog"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/charles/mylog"
 	uuid "github.com/satori/go.uuid"
 )
 
 type Context struct {
-	W       http.ResponseWriter
-	R       *http.Request
-	BodyStr string
-	Sid     string
-	Logger  *mylog.MyLogger
-	StartTime	time.Time
+	W         http.ResponseWriter
+	R         *http.Request
+	BodyStr   string
+	Sid       string
+	Logger    *mylog.MyLogger
+	StartTime time.Time
 }
+
 //
 
 func NewContext(w http.ResponseWriter, r *http.Request, logger *mylog.MyLogger) *Context {
 
 	return &Context{
-		W:      w,
-		R:      r,
-		Sid:    uuid.Must(uuid.NewV4()).String(),
-		Logger: logger,
-		StartTime:     time.Now(),
+		W:         w,
+		R:         r,
+		Sid:       uuid.Must(uuid.NewV4()).String(),
+		Logger:    logger,
+		StartTime: time.Now(),
 	}
 }
 
