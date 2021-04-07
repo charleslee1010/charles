@@ -7,9 +7,9 @@
 package goesl
 
 import (
-//	"os"
-	log "github.com/charles/mylog"
-//	"github.com/op/go-logging"
+	//	"os"
+	log "github.com/charleslee1010/charles/mylog"
+	//	"github.com/op/go-logging"
 )
 
 //var (

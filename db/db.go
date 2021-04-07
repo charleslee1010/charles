@@ -4,13 +4,16 @@ import (
 	"bytes"
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
+
 	//	"reflect"
 	"errors"
-	toolkit "github.com/charles/toolkit"
 	"io"
 	"strconv"
+
+	toolkit "github.com/charleslee1010/charles/toolkit"
 )
 
 type Database struct {
@@ -480,10 +483,10 @@ func (this *Database) QueryDB(w io.Writer, sqlString string, args ...interface{}
 
 	count := len(columns)
 
-//	_, err := rows.ColumnTypes()
-//	if err != nil {
-//		return err
-//	}
+	//	_, err := rows.ColumnTypes()
+	//	if err != nil {
+	//		return err
+	//	}
 
 	if count == 0 {
 		// no records
@@ -507,7 +510,7 @@ func (this *Database) QueryDB(w io.Writer, sqlString string, args ...interface{}
 			valuePtrs[i] = &values[i]
 		}
 		rows.Scan(valuePtrs...)
-//		entry := make(map[string]interface{})
+		//		entry := make(map[string]interface{})
 		for i, _ := range columns {
 
 			var v interface{}

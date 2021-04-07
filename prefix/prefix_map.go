@@ -2,8 +2,9 @@ package toolkit
 
 import (
 	"fmt"
-	log "github.com/charles/mylog"
 	"sync"
+
+	log "github.com/charleslee1010/charles/mylog"
 )
 
 const (

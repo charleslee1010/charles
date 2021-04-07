@@ -7,7 +7,7 @@
 package goesl
 
 import (
-	toolkit "github.com/charles/toolkit"
+	toolkit "github.com/charleslee1010/charles/toolkit"
 )
 
 // Set - Helper that you can use to execute SET application against active ESL session
@@ -35,13 +35,13 @@ func (sc *SocketConnection) Api(command string) (*toolkit.Future, error) {
 }
 
 // BgApi - Helper designed to attach bgapi in front of the command so that you do not need to write it
-func (sc *SocketConnection) BgApi(command string) (*toolkit.Future, error){
+func (sc *SocketConnection) BgApi(command string) (*toolkit.Future, error) {
 	return sc.Send("bgapi " + command)
 }
 
 // Connect - Helper designed to help you handle connection. Each outbound server when handling needs to connect e.g. accept
 // connection in order for you to do answer, hangup or do whatever else you wish to do
-func (sc *SocketConnection) Connect() (*toolkit.Future, error){
+func (sc *SocketConnection) Connect() (*toolkit.Future, error) {
 	return sc.Send("connect")
 }
 

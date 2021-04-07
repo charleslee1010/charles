@@ -4,12 +4,13 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	log "github.com/charles/mylog"
-	_ "github.com/go-sql-driver/mysql"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	log "github.com/charleslee1010/charles/mylog"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type TimeRule struct {

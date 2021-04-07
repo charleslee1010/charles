@@ -2,9 +2,10 @@ package toolkit
 
 import (
 	"fmt"
-	log "github.com/charles/mylog"
-	"github.com/glenn-brown/golang-pkg-pcre/src/pkg/pcre"
 	"sync"
+
+	log "github.com/charleslee1010/charles/mylog"
+	"github.com/glenn-brown/golang-pkg-pcre/src/pkg/pcre"
 )
 
 const (

@@ -9,13 +9,14 @@ package goesl
 import (
 	"bufio"
 	"container/list"
+	"errors"
 	"fmt"
 	"io"
 	"net"
 	"strconv"
 	"time"
-	"errors"
-	toolkit "github.com/charles/toolkit"
+
+	toolkit "github.com/charleslee1010/charles/toolkit"
 )
 
 // Client - In case you need to do inbound dialing against freeswitch server in order to originate call or see
@@ -114,20 +115,20 @@ func NewClient(host string, port uint, passwd string, timeout int) (*Client, err
 	return &client, nil
 }
 
-func GetMessage(f *toolkit.Future) (m*Message, err error) {
+func GetMessage(f *toolkit.Future) (m *Message, err error) {
 	var ok bool
 	mintf := f.GetResult()
 	if mintf != nil {
 		if m, ok = mintf.(*Message); ok {
-			return 
+			return
 		} else {
 			err = errors.New("Future contains no message")
-			return 
+			return
 		}
 
 	} else {
 		err = errors.New("Future times out")
-		return 
+		return
 	}
 
 }

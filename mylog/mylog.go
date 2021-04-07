@@ -2,7 +2,8 @@ package mylog
 
 import (
 	"fmt"
-	toolkit "github.com/charles/toolkit"
+
+	toolkit "github.com/charleslee1010/charles/toolkit"
 )
 
 type MyLogger struct {

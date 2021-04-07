@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/charles/mylog"
+	"github.com/charleslee1010/charles/mylog"
 	uuid "github.com/satori/go.uuid"
 )
 

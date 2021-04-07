@@ -9,7 +9,6 @@ package goesl
 import (
 	"bufio"
 	"bytes"
-	toolkit "github.com/charles/toolkit"
 	"container/list"
 	"fmt"
 	"io"
@@ -18,6 +17,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	toolkit "github.com/charleslee1010/charles/toolkit"
 )
 
 // Main connection against ESL - Gotta add more description here
@@ -140,6 +141,7 @@ func (c *SocketConnection) ExecuteUUIDAsync(uuid string, command string, args st
 		"event-lock":       strconv.FormatBool(sync),
 	}, uuid, "")
 }
+
 // SendMsgAsync - Basically this func will send message to the opened connection
 // donot wait for response
 //
@@ -190,11 +192,9 @@ func (c *SocketConnection) SendMsgAsync(msg map[string]string, uuid, data string
 	c.L.PushBack(f)
 
 	c.mtx.Unlock()
-	
+
 	return f, nil
 }
-
-
 
 func (c *SocketConnection) SendMsg(msg map[string]string, uuid, data string) (m *Message, err error) {
 
@@ -202,12 +202,12 @@ func (c *SocketConnection) SendMsg(msg map[string]string, uuid, data string) (m 
 	if err != nil {
 		return nil, err
 	}
-	
+
 	ret := f.GetResult()
 	if ret == nil {
 		return nil, fmt.Errorf("future timeout")
 	}
-	
+
 	if m, ok := ret.(*Message); !ok {
 		return nil, fmt.Errorf("Invalid response")
 	} else {
@@ -257,8 +257,8 @@ func (c *SocketConnection) Handle() {
 			msgType, ok := msg.Headers["Content-Type"]
 			if !ok {
 				Error("can not find Content-Type")
-//				fmt.Println(msg.Headers)
-//				fmt.Println(msg)
+				//				fmt.Println(msg.Headers)
+				//				fmt.Println(msg)
 			} else {
 				if msgType == "command/reply" || msgType == "api/response" {
 					// if it is reply, dequeue

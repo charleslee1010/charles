@@ -3,9 +3,10 @@ package mylog
 import (
 	//	"log"
 	"fmt"
-	toolkit "github.com/charles/toolkit"
 	"os"
 	"time"
+
+	toolkit "github.com/charleslee1010/charles/toolkit"
 
 	"strings"
 	//	"runtime"
@@ -27,13 +28,13 @@ const (
 )
 
 const (
-	MASK_DEBUG = 1
-	MASK_NOTICE = 2
-	MASK_INFO = 4
-	MASK_WARNING = 8
-	MASK_ERROR = 16
+	MASK_DEBUG    = 1
+	MASK_NOTICE   = 2
+	MASK_INFO     = 4
+	MASK_WARNING  = 8
+	MASK_ERROR    = 16
 	MASK_CRITICAL = 32
-	MASK_TRACE = 64
+	MASK_TRACE    = 64
 )
 
 var severityString []string = []string{
@@ -47,7 +48,7 @@ var severityString []string = []string{
 }
 
 // except DEBUG
-const LOG_MASK_DEFAULT int = 126  
+const LOG_MASK_DEFAULT int = 126
 const LOG_MASK_ALL int = 127
 
 type FileAppender struct {
@@ -65,9 +66,9 @@ type FileAppender struct {
 	logTimer *time.Timer
 
 	// severity level
-//	level int
-	
-	logMask     int
+	//	level int
+
+	logMask int
 	// trace on/off
 	trace bool
 
@@ -106,9 +107,9 @@ func NewFileAppender(prop *toolkit.Properties, logger string) (*FileAppender, er
 		logChan:         make(chan *LogItem, LOG_CHANN_SIZE),
 		logFormat:       prop.GetPropertyString(logger+".logFormat", ""),
 		fileNamePattern: prop.GetPropertyString(logger+".fileNamePattern", "default.%Y-%M-%D_%h-%m-%s.log"),
-//		level:           INFO,
-		trace:           true,
-		logMask:         LOG_MASK_DEFAULT,
+		//		level:           INFO,
+		trace:   true,
+		logMask: LOG_MASK_DEFAULT,
 
 		elogFormat: prop.GetPropertyString(logger+".ErrorLogFormat", ""),
 		wlogFormat: prop.GetPropertyString(logger+".WarningLogFormat", ""),
@@ -163,26 +164,26 @@ func (fa *FileAppender) GetMask() int {
 
 func (fa *FileAppender) SetTrace(onoff bool) {
 	if onoff {
-		fa.logMask = fa.logMask|MASK_TRACE
+		fa.logMask = fa.logMask | MASK_TRACE
 	} else {
-		fa.logMask = fa.logMask&(LOG_MASK_ALL^MASK_TRACE)
+		fa.logMask = fa.logMask & (LOG_MASK_ALL ^ MASK_TRACE)
 	}
 }
 
 func (fa *FileAppender) SetLevel(lvl uint) {
-	fa.logMask = fa.logMask|(1 << lvl)
+	fa.logMask = fa.logMask | (1 << lvl)
 }
 
 func (fa *FileAppender) Enable(lvl uint) {
-	fa.logMask = fa.logMask|(1 << lvl)
+	fa.logMask = fa.logMask | (1 << lvl)
 }
 
 func (fa *FileAppender) Disable(lvl uint) {
-	fa.logMask = fa.logMask&(LOG_MASK_ALL^(1<<lvl))
+	fa.logMask = fa.logMask & (LOG_MASK_ALL ^ (1 << lvl))
 }
 
 func (fa *FileAppender) IsEnabled(lvl uint) bool {
-	 return (fa.logMask|(1 << lvl)) > 0
+	return (fa.logMask | (1 << lvl)) > 0
 }
 
 func (fa *FileAppender) ChanFull() int {
