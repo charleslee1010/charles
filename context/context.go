@@ -23,31 +23,31 @@ type Context struct {
 //
 
 func NewContext(w http.ResponseWriter, r *http.Request, logger *mylog.MyLogger) *Context {
-	uuid := ""
+	u := ""
 
 	if id, err := uuid.NewUUID(); err == nil {
-		uuid = id.String()
+		u = id.String()
 	}
 
 	return &Context{
 		W:         w,
 		R:         r,
-		Sid:       uuid,
+		Sid:       u,
 		Logger:    logger,
 		StartTime: time.Now(),
 	}
 }
 
 func (this *Context) Init(w http.ResponseWriter, r *http.Request, logger *mylog.MyLogger) {
-	uuid := ""
+	u := ""
 
 	if id, err := uuid.NewUUID(); err == nil {
-		uuid = id.String()
+		u = id.String()
 	}
 
 	this.W = w
 	this.R = r
-	this.Sid = uuid
+	this.Sid = u
 	this.Logger = logger
 	this.StartTime = time.Now()
 }
